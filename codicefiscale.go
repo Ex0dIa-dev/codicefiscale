@@ -69,7 +69,7 @@ func GetDataNascita(data_di_nascita, genere string) string {
 	err = os.Chdir(home)
 	checkerr(err)
 
-	err = os.Chdir("go/src/github.com/Ex0dIa-dev/go-codicefiscale")
+	err = os.Chdir("go/src/github.com/Ex0dIa-dev/codicefiscale")
 	checkerr(err)
 
 	file, err := ioutil.ReadFile("data/mesi.json")
@@ -101,7 +101,7 @@ func GetCodiceCitta(citta string) string {
 	err := os.Chdir(home)
 	checkerr(err)
 
-	err = os.Chdir("go/src/github.com/Ex0dIa-dev/go-codicefiscale")
+	err = os.Chdir("go/src/github.com/Ex0dIa-dev/codicefiscale")
 	checkerr(err)
 
 	file, err := os.Open("data/comuni.csv")
@@ -122,6 +122,7 @@ func GetCodiceCitta(citta string) string {
 		}
 	}
 
+	file.Close()
 	return codice_citta
 }
 
