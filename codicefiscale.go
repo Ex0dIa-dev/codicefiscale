@@ -66,10 +66,12 @@ func GetDataNascita(data_di_nascita, genere string) string {
 
 	map_file := make(map[string]string)
 
-	gopath, err := exec.Command("go", "env", "GOPATH").Output()
+	tmp, err := exec.Command("go", "env", "GOPATH").Output()
 	checkerr(err)
+	gopath := string(tmp)
+	gopath = strings.Replace(gopath, "\n", "", -1)
 
-	path := string(gopath) + "/src/github.com/Ex0dIa-dev/codicefiscale"
+	path := gopath + "/src/github.com/Ex0dIa-dev/codicefiscale"
 	err = os.Chdir(path)
 	checkerr(err)
 
@@ -98,10 +100,12 @@ func GetDataNascita(data_di_nascita, genere string) string {
 //ritorna il codice della citta
 func GetCodiceCitta(citta string) string {
 
-	gopath, err := exec.Command("go", "env", "GOPATH").Output()
+	tmp, err := exec.Command("go", "env", "GOPATH").Output()
 	checkerr(err)
+	gopath := string(tmp)
+	gopath = strings.Replace(gopath, "\n", "", -1)
 
-	path := string(gopath) + "/src/github.com/Ex0dIa-dev/codicefiscale"
+	path := gopath + "/src/github.com/Ex0dIa-dev/codicefiscale"
 	err = os.Chdir(path)
 	checkerr(err)
 
