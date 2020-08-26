@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
@@ -65,11 +66,11 @@ func GetDataNascita(data_di_nascita, genere string) string {
 
 	map_file := make(map[string]string)
 
-	home, _ := os.UserHomeDir()
-	err = os.Chdir(home)
+	gopath, err := exec.Command("go", "env", "GOPATH").Output()
 	checkerr(err)
 
-	err = os.Chdir("go/src/github.com/Ex0dIa-dev/codicefiscale")
+	path := string(gopath) + "/src/github.com/Ex0dIa-dev/codicefiscale"
+	err = os.Chdir(path)
 	checkerr(err)
 
 	file, err := ioutil.ReadFile("data/mesi.json")
@@ -97,11 +98,11 @@ func GetDataNascita(data_di_nascita, genere string) string {
 //ritorna il codice della citta
 func GetCodiceCitta(citta string) string {
 
-	home, _ := os.UserHomeDir()
-	err := os.Chdir(home)
+	gopath, err := exec.Command("go", "env", "GOPATH").Output()
 	checkerr(err)
 
-	err = os.Chdir("go/src/github.com/Ex0dIa-dev/codicefiscale")
+	path := string(gopath) + "/src/github.com/Ex0dIa-dev/codicefiscale"
+	err = os.Chdir(path)
 	checkerr(err)
 
 	file, err := os.Open("data/comuni.csv")
